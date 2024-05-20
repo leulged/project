@@ -1,0 +1,99 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* Using Roboto font */
+    background-color: #f0f0f0; /* Beautiful background color */
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #333; /* Dark background color for header */
+    padding: 20px 0;
+    border-bottom: 2px solid #FFD700; /* Golden border */
+    position: relative; /* Positioning for the links */
+}
+
+header h1 {
+    font-family: 'Pacifico', cursive; /* Using Pacifico font for the title */
+    font-size: 28px;
+    color: #FFD700; /* Golden color for title */
+    margin-right: auto; /* Auto margin to push the title to the left */
+}
+
+nav {
+    position: absolute; /* Positioning for the links */
+    top: 50%; /* Vertically align links to the middle */
+    transform: translateY(-50%); /* Adjust vertical alignment */
+    right: 0; /* Align links to the right */
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 20px; /* Add margin between links */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #FFF; /* White color for links */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #FF4B2B; /* Hover color */
+}
+
+.section {
+    padding: 50px 0;
+}
+
+.section h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.news-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.news-article {
+    background-color: #FFF; /* White background for articles */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.news-article h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.news-article p {
+    color: #666;
+    line-height: 1.5;
+}
+
+.news-article a {
+    display: inline-block;
+    color: #FF4B2B;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+}

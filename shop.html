@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manchester United Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shopstyle.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Manchester United</h1>
+            <nav>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="tickets.html">Tickets</a></li>
+                    <li><a href="players.html">Players</a></li>
+                    <li><a href="fixtures.html">Fixtures</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="shop" class="section">
+        <div class="container">
+            <h2>Shop</h2>
+    
+            <!-- Kit Type Links -->
+            <div class="category-links">
+                <span class="kit-type" data-kit="home">Home Kit</span>
+                <span class="kit-type" data-kit="away">Away Kit</span>
+                <span class="kit-type" data-kit="third">3rd Kit</span>
+            </div>
+    
+            <!-- Products -->
+            <div class="products">
+                <!-- Home Kits -->
+                <div class="kit" id="home-kits">
+                    <h3>Home Kits</h3>
+                    <div class="product">
+                        <img src="home_kit_1.jpg" alt="Home Kit 1">
+                        <p class="product-name">Home Kit 1</p>
+                        <p class="product-price">$50</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                    <!-- Add more products here -->
+                </div>
+    
+                <!-- Away Kits -->
+                <div class="kit" id="away-kits">
+                    <h3>Away Kits</h3>
+                    <div class="product">
+                        <img src="away_kit_1.jpg" alt="Away Kit 1">
+                        <p class="product-name">Away Kit 1</p>
+                        <p class="product-price">$45</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                    <!-- Add more products here -->
+                </div>
+    
+                <!-- 3rd Kits -->
+                <div class="kit" id="third-kits">
+                    <h3>3rd Kits</h3>
+                    <div class="product">
+                        <img src="third_kit_1.jpg" alt="3rd Kit 1">
+                        <p class="product-name">3rd Kit 1</p>
+                        <p class="product-price">$40</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                    <!-- Add more products here -->
+                </div>
+            </div>
+        </div>
+    </section>
+  <!-- Example of login link or user initial circle -->
+<div id="loginLink"></div>
+  
+    <script src="shop.js"></script>
+</body>
+</html>
