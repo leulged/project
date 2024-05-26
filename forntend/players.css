@@ -20,9 +20,9 @@ body {
 }
 
 header {
-    background-color:  #FF4B2B;
+    background: linear-gradient(to left, rgba(56, 56, 56, 0.164), orangered); /* Dark background color for header */
     padding: 20px 0;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid black; /* Golden border */
     display: flex;
     justify-content: space-between;
     align-items: center;
