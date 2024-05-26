@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Player, News
+from .models import Player, News, Fixture
 
 class PlayerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,4 +10,8 @@ class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = '__all__'
-        
+
+class FixtureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fixture
+        fields = '__all__'

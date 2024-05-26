@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manchester United Shop</title>
+    <title>Adama City Fixtures</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="players.css">
+    <link rel="stylesheet" href="fixturestyle.css">
 </head>
 <body>
     <header>
@@ -17,7 +17,7 @@
                 <ul>
                     <li><a href="home.html">Home</a></li>
                     <li><a href="shop.html">Shop</a></li>
-                    <li><a href="#fixtures">Fixtures</a></li>
+                    <li><a href="fixtures.html">Fixtures</a></li>
                     <li><a href="#tickets">Tickets</a></li>
                     <li><a href="players.html">Players</a></li>
                     <li><a href="#about">About</a></li>
@@ -27,15 +27,15 @@
         </div>
     </header>
 
-    <section id="players" class="section">
+    <section id="fixtures" class="section">
         <div class="container">
-            <h2>Players</h2>
-            <div class="player-list">
-                <!-- Player Cards will be dynamically added here -->
+            <h2>Upcoming Fixtures</h2>
+            <div id="fixture-container" class="fixture-container">
+                <!-- Fixture items will be inserted here by JavaScript -->
             </div>
         </div>
     </section>
 
-    <script src="playerscript.js"></script>
+    <script src="fixtures.js"></script>
 </body>
 </html>

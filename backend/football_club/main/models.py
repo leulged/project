@@ -27,3 +27,17 @@ class News(models.Model):
     class Meta:
         ordering = ['-published_date']
         verbose_name_plural = "News"
+
+
+class Fixture(models.Model):
+    home_team = models.CharField(max_length=255)
+    home_image = models.ImageField(upload_to='match_image', blank=True)
+    away_team = models.CharField(max_length=255)
+    away_image = models.ImageField(upload_to='match_image', blank=True)
+    venue = models.CharField(max_length=50)
+    competition = models.CharField(max_length=255)
+    date_time = models.DateTimeField()
+
+    def __str__(self):
+        return f'{self.home_team} vs {self.away_team}'
+    

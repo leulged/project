@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import Player, News
-from .serializers import PlayerSerializer, NewsSerializer
+from .models import Player, News, Fixture
+from .serializers import PlayerSerializer, NewsSerializer, FixtureSerializer
 
 class PlayerListCreate(generics.ListAPIView):
     queryset = Player.objects.all()
@@ -18,3 +18,7 @@ class NewsListCreate(generics.ListAPIView):
 class NewsDetail(generics.RetrieveAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
+
+class FixtureList(generics.ListAPIView):
+    queryset = Fixture.objects.all()
+    serializer_class = FixtureSerializer
