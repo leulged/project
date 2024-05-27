@@ -61,19 +61,30 @@ nav ul li a:hover {
 }
 
 .player-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
 }
-
 .player-card {
     background-color: #FFF;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 15rem;
+    height: 40vh;
+    margin: 2rem;
+}
+.plyrs {
+    display: flex;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+.player-list h2{
+    text-align: center;  
 }
 
+/* specific */
 .player-card img {
     max-width: 100%;
     height: auto;
