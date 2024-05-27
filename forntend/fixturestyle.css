@@ -1,0 +1,151 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: black;
+    color: #ffffff;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+header {
+    background: linear-gradient(to left, rgba(56, 56, 56, 0.164), orangered); 
+    padding: 20px 0;
+    border-bottom: 2px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    font-size: 28px;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color:  black;
+}
+
+.section {
+    padding: 50px 0;
+}
+
+.section h2 {
+    font-size: 2rem;
+    color:  #FF4B2B;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.fixture-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.fixture-card {
+    background-color: black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    color: #ffffff;
+}
+
+.fixture-card img {
+    max-width: 50px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.fixture-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fixture-date, .fixture-venue, .fixture-competition {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.fixture-date {
+    color: #ffd700;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        display: none;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: black;
+        border-top: 1px solid #0c0c0b;
+        z-index: 1000;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    nav ul li {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    header h1 {
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    nav {
+        order: -1;
+    }
+
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #ffd700;
+        font-size: 24px;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 480px) {
+    .section {
+        padding: 30px 0;
+    }
+
+    .section h2 {
+        font-size: 1.5rem;
+    }
+}
