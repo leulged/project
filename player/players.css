@@ -72,6 +72,7 @@ nav ul li a:hover {
     width: 15rem;
     height: 40vh;
     margin: 2rem;
+    cursor: pointer;
 }
 .plyrs {
     display: flex;
