@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Player(models.Model):
@@ -39,4 +40,38 @@ class Fixture(models.Model):
 
     def __str__(self):
         return f'{self.home_team} vs {self.away_team}'
+
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+class Product(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+    price = models.IntegerField()
+    stock = models.IntegerField()
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    image = models.ImageField(upload_to='product/', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
     
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_ordered = models.DateTimeField(auto_now_add=True)
+    complete = models.BooleanField(default=True)
+    transaction_id = models.CharField(max_length=50)
+
+    def __str__(self):
+        return str(self.id)
+
+class OrderItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=0)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.id)
