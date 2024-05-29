@@ -6,36 +6,35 @@
     <title>Adama City</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="homestyle.css">
+    <script src="components/header.js" type="text/javascript" defer></script>
+    <link rel="stylesheet" type="text/css" href="header.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Adama City</h1>
-            <button class="menu-toggle">☰</button>
-            <nav>
-                <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="fixtures.html">Fixtures</a></li>
-                    <li><a href="#tickets">Tickets</a></li>
-                    <li><a href="players.html">Players</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="login.html">Login</a></li>
-                </ul>
-            </nav>
+    <div class="main-container">
+        <div>
+            <header-component></header-component>
         </div>
-    </header>
-
-    <section id="news" class="section">
-        <div class="container">
-            <h2>Latest News</h2>
-            <div id="news-container" class="news-container">
-                <!-- News articles will be inserted here by JavaScript -->
-            </div>
+        <div>
+            <section id="lading" class="landing">
+                
+                <div class="landing-page">
+                    <h1>ADAMA CITY F.C.</h1>
+                    <h2>FOUNDED 1983</h2>
+                </div>
+                
+            </section>
+            <section id="news" class="section">
+                <div class="container">
+               
+                    <div id="news-container" class="news-container"> 
+                        <!-- News articles will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
-
+    </div>
     <script src="home.js"></script>
 </body>
 </html>

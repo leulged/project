@@ -1,47 +1,35 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const fixtureContainer = document.getElementById('fixture-container');
+ // Wait for DOM to be ready
+ $(document).ready(function() {
+    const fixtureContainer = $('#fixture-container');
 
     // Fetch fixture data from the API
-    fetch('http://127.0.0.1:8000/api/fixture/')
-        .then(response => response.json())
-        .then(fixtures => {
+    $.ajax({
+        url: 'http://127.0.0.1:8000/api/fixture/',
+        method: 'GET',
+        dataType: 'json',
+        success: function(fixtures) {
             // Loop through each fixture and create HTML elements
-            fixtures.forEach(fixture => {
-                const fixtureCard = document.createElement('div');
-                fixtureCard.classList.add('fixture-card');
+            $.each(fixtures, function(index, fixture) {
+                const fixtureCard = $('<div>').addClass('fixture-card');
+                const homeTeamImage = $('<img>').attr({
+                    src: fixture.home_image,
+                    alt: fixture.home_team
+                });
+                const awayTeamImage = $('<img>').attr({
+                    src: fixture.away_image,
+                    alt: fixture.away_team
+                });
+                const fixtureTitle = $('<h3>').text(`${fixture.home_team} vs ${fixture.away_team}`);
+                const fixtureVenue = $('<p>').text(`Venue: ${fixture.venue}`);
+                const fixtureCompetition = $('<p>').text(`Competition: ${fixture.competition}`);
+                const fixtureDateTime = $('<p>').text(`Date: ${new Date(fixture.date_time).toLocaleString()}`);
 
-                const homeTeamImage = document.createElement('img');
-                homeTeamImage.src = fixture.home_image;
-                homeTeamImage.alt = fixture.home_team;
-
-                const awayTeamImage = document.createElement('img');
-                awayTeamImage.src = fixture.away_image;
-                awayTeamImage.alt = fixture.away_team;
-
-                const fixtureTitle = document.createElement('h3');
-                fixtureTitle.textContent = `${fixture.home_team} vs ${fixture.away_team}`;
-
-                const fixtureVenue = document.createElement('p');
-                fixtureVenue.textContent = `Venue: ${fixture.venue}`;
-
-                const fixtureCompetition = document.createElement('p');
-                fixtureCompetition.textContent = `Competition: ${fixture.competition}`;
-
-                const fixtureDateTime = document.createElement('p');
-                const fixtureDate = new Date(fixture.date_time);
-                fixtureDateTime.textContent = `Date: ${fixtureDate.toLocaleDateString()} Time: ${fixtureDate.toLocaleTimeString()}`;
-
-                fixtureCard.appendChild(homeTeamImage);
-                fixtureCard.appendChild(awayTeamImage);
-                fixtureCard.appendChild(fixtureTitle);
-                fixtureCard.appendChild(fixtureVenue);
-                fixtureCard.appendChild(fixtureCompetition);
-                fixtureCard.appendChild(fixtureDateTime);
-
-                fixtureContainer.appendChild(fixtureCard);
+                fixtureCard.append(homeTeamImage, awayTeamImage, fixtureTitle, fixtureVenue, fixtureCompetition, fixtureDateTime);
+                fixtureContainer.append(fixtureCard);
             });
-        })
-        .catch(error => {
-            console.error('Error fetching fixtures:', error);
-        });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error fetching fixtures:', textStatus, errorThrown);
+        }
+    });
 });

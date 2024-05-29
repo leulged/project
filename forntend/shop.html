@@ -3,28 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manchester United Shop</title>
+    <title>Adama Shop</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="shopstyle.css">
+    <script src="components/header.js" type="text/javascript" defer></script>
+    <link rel="stylesheet" type="text/css" href="header.css">
+
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Manchester United</h1>
-            <nav>
-                <ul>
-                    <li><a href="home.html">Home</a></li>
-                    <li><a href="#fixtures">Fixtures</a></li>
-                    <li><a href="#tickets">Tickets</a></li>
-                    <li><a href="#players">Players</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="login.html">Login</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
+    <div class="top-header">
+    <header-component></header-component>
+    </div>
+    <div>
     <section id="shop" class="section">
         <div class="container">
             <h2>Shop</h2>
@@ -76,6 +67,8 @@
             </div>
         </div>
     </section>
+
+</div>
     
     <script src="script.js"></script>
 </body>

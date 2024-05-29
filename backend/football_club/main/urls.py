@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import PlayerListCreate, PlayerDetail, NewsListCreate, NewsDetail, FixtureList
+from .views import PlayerListCreate, PlayerDetail, NewsListCreate, NewsDetail, FixtureList, RegisterView, CustomTokenObtainPairView
 
 urlpatterns = [
     path('players/', PlayerListCreate.as_view(), name='player-list-create'),
@@ -7,4 +7,6 @@ urlpatterns = [
     path('news/', NewsListCreate.as_view(), name='news-list-create'),
     path('news/<int:pk>/', NewsDetail.as_view(), name='news-detail'),
     path('fixture/', FixtureList.as_view(), name='fixture-list'),
+    path('register/', RegisterView.as_view(), name="register"),
+    path('login/', CustomTokenObtainPairView.as_view(), name="login")
 ]

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manchester United - Login/Register</title>
     <link rel="stylesheet" href="styles.css">
+    <meta name="csrf-token" content="{{ csrf_token }}">
 </head>
 <body>
     <div class="container" id="container">
@@ -26,13 +27,89 @@
         <div class="form-container sign-in-container">
             <form id="loginForm">
                 <h1>Login</h1>
-                <input type="email" id="loginEmail" placeholder="Email" required />
+                <input type="text" id="loginUsername" placeholder="Username" required />
                 <input type="password" id="loginPassword" placeholder="Password" required />
                 <button type="submit">Login</button>
                 <p>Don't have an account? <a href="#" id="signUpLink">Register</a></p>
             </form>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Register Form Submission
+            $('#registerForm').submit(function(e) {
+                e.preventDefault();
+                var username = $('#registerName').val();
+                var email = $('#registerEmail').val();
+                var password = $('#registerPassword').val();
+                var confirmPassword = $('#confirmPassword').val();
+
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match");
+                    return;
+                }
+
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/register/',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        'username': username,
+                        'email': email,
+                        'password': password
+                    }),
+                    success: function(response) {
+                        alert("Registration successful");
+                        $('#registerForm')[0].reset();
+                    },
+                    error: function(xhr, status, error) {
+                        var errorMessage = xhr.responseJSON.detail || "Registration failed";
+                        alert(errorMessage);
+                    }
+                });
+            });
+
+            // Login Form Submission
+            $('#loginForm').submit(function(e) {
+                e.preventDefault();
+                var username = $('#loginUsername').val();
+                var password = $('#loginPassword').val();
+
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/login/',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        'username': username,
+                        'password': password
+                    }),
+                    success: function(response) {
+                        alert("Login successful");
+                        $('#loginForm')[0].reset();
+                        localStorage.setItem('isLoggedIn', 'true');
+                        localStorage.setItem('username', username);
+                        console.log(username)
+                        window.location.href = '/forntend/home.html';
+                    },
+                    error: function(xhr, status, error) {
+                        var errorMessage = xhr.responseJSON.detail || "Login failed";
+                        alert(errorMessage);
+                    }
+                });
+            });
+
+            // Switch between sign-up and sign-in forms
+            $('#signInLink').click(function(e) {
+                e.preventDefault();
+                $('#container').removeClass('right-panel-active');
+            });
+
+            $('#signUpLink').click(function(e) {
+                e.preventDefault();
+                $('#container').addClass('right-panel-active');
+            });
+        });
+    </script>
 </body>
 </html>

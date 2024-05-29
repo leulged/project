@@ -1,0 +1,99 @@
+/* Header style */
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.city_container {
+  position: absolute;
+  top: 0;
+  left: 10px; /* Adjust as needed to position the image */
+}
+
+.city_container img {
+  height: 200px; /* Adjust height as needed */
+  z-index: 2000;
+}
+
+header {
+  background: rgb(12, 12, 12);
+  padding: 20px 0;
+  border-bottom: 2px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: fixed;
+  width: 100%;
+  top: 0; /* Ensures the header stays at the top */
+  z-index: 1000; /* Ensures the header stays above other elements */
+  padding-left: 220px; /* Add padding to make space for the logo */
+}
+
+header h1 {
+  font-size: 28px;
+  color: black;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #FFF;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: orange;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: #333;
+    border-top: 1px solid #0c0c0b;
+    z-index: 1000;
+  }
+
+  nav ul.show {
+    display: flex;
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  header h1 {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  nav {
+    order: -1;
+  }
+
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: #FFD700;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}

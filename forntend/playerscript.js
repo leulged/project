@@ -1,52 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const playerListContainer = document.querySelector('.player-list');
+ // Fetch player data and populate player list
+ $(document).ready(function() {
+    const playerListContainer = $('.player-list');
 
-    fetch('http://127.0.0.1:8000/api/players/')
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(player => {
-                const playerCard = document.createElement('div');
-                playerCard.classList.add('player-card');
+    $.ajax({
+        url: 'http://127.0.0.1:8000/api/players/',
+        method: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $.each(data, function(index, player) {
+                const playerCard = $('<div>').addClass('player-card');
+                const playerImage = $('<img>').attr({
+                    src: player.image,
+                    alt: player.name
+                });
+                const playerName = $('<h3>').addClass('player-name').text(player.name);
+                const playerPosition = $('<p>').addClass('player-position').text('Position: ' + player.position);
+                const playerAge = $('<p>').addClass('player-age').text('Age: ' + player.age);
+                const playerCountry = $('<p>').addClass('player-country').text('Country: ' + player.country);
 
-                const playerImage = document.createElement('img');
-                playerImage.src = player.image;
-                playerImage.alt = player.name;
-
-                const playerName = document.createElement('h3');
-                playerName.classList.add('player-name');
-                playerName.textContent = player.name;
-
-                const playerPosition = document.createElement('p');
-                playerPosition.classList.add('player-position');
-                playerPosition.textContent = `Position: ${player.position}`;
-
-                const playerAge = document.createElement('p');
-                playerAge.classList.add('player-age');
-                playerAge.textContent = `Age: ${player.age}`;
-
-                const playerCountry = document.createElement('p');
-                playerCountry.classList.add('player-country');
-                playerCountry.textContent = `Country: ${player.country}`;
-
-                playerCard.appendChild(playerImage);
-                playerCard.appendChild(playerName);
-                playerCard.appendChild(playerPosition);
-                playerCard.appendChild(playerAge);
-                playerCard.appendChild(playerCountry);
-
-                playerListContainer.appendChild(playerCard);
+                playerCard.append(playerImage, playerName, playerPosition, playerAge, playerCountry);
+                playerListContainer.append(playerCard);
             });
-        })
-        .catch(error => {
-            console.error('Error fetching player data:', error);
-        });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error fetching player data:', textStatus, errorThrown);
+        }
+    });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('nav ul');
-
-    menuToggle.addEventListener('click', function() {
-        nav.classList.toggle('show');
+// Toggle menu functionality
+$(document).ready(function() {
+    $('.menu-toggle').click(function() {
+        $('nav ul').toggleClass('show');
     });
 });

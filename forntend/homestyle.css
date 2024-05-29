@@ -1,15 +1,7 @@
-/* Reset some default styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Roboto', sans-serif; /* Using Roboto font */
-
-    background-color: #121212;
-    /* Beautiful background color */
+/* Home section style */
+.main-container{
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
@@ -17,53 +9,61 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
-    height: 50%;
-}
-
-header {
-    background: linear-gradient(to left, rgba(56, 56, 56, 0.164), orangered); /* Dark background color for header */
-    padding: 20px 0;
-    border-bottom: 2px solid black; /* Golden border */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    position: fixed;
-    width: 100%;
+    flex-direction: column;
 }
 
-
-header h1 {
-    /*font-family: 'Pacifico', cursive; /* Using Pacifico font for the title */
-    font-size: 28px;
-    color: black; /* Golden color for title */
+/* Set a fixed height for the header/navigation */
+header-component {
+    height: 80px; /* Adjust the height as needed */
 }
+@keyframes changeBackground{
+    0%, 16.66% {
+        background-image: url('photo_2024-05-28_14-48-56.jpg');
+    }
+    16.67%, 33.32% {
+        background-image: url('photo_2024-05-28_14-49-14.jpg');
+    }
+    33.33%, 49.98%{
+        background-image: url('photo_2024-05-28_15-28-15.jpg');
+    }
+    49.9%, 66.64%{
+        background-image: url('photo_2024-05-28_15-28-52.jpg');
+    }
 
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+    66.64%, 83.30%{
+        background-image: url('photo_2024-05-28_15-28-25.jpg');
+    }
+    83.31%, 100%{
+        background-image: url('photo_2024-05-28_15-29-01.jpg');
+    }
+
 }
-
-nav ul li a {
-    text-decoration: none;
-    color: #FFF; /* White color for links */
-    font-weight: bold;
-    transition: color 0.3s ease;
+/* Adjust the margin-top for the landing section to accommodate the header/navigation */
+.landing {
+    background-color: black;
+    height: 500px;
+    margin-top: 90px;
+    margin-bottom: 20px;
+    animation: changeBackground 60s infinite;
+    background-size: cover; /* Adjust background size as needed */
+     /* Same as the height of the header/navigation */
+     margin-left: 0px;
+     margin-right: 0px;
+     color: rgb(8, 8, 8);
+     font-size: xx-large;
+     display: flex;
+     justify-content: center;
 }
-
-nav ul li a:hover {
-    color: black; /* Hover color */
+.club-bagde {
+    right: 0px;
 }
-
-.section {
-    padding: 50px 0;
+.club-bagde img {
+    width: 200px;
 }
-
 .section h2 {
-    margin-top: 100px;
     font-size: 2rem;
-    color: white;
+    color: black; /* Adjusted color for better contrast */
     margin-bottom: 20px;
     text-align: center;
 }
@@ -75,24 +75,26 @@ nav ul li a:hover {
 }
 
 .news-article {
-    background-color: #1f1f1f;
-
+    background-color: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
 }
+.news-article:hover{
+    transform: translateY(-10px);
+}
 
 .news-article h3 {
-    font-size: 1.25rem;
-    color: white;
+    font-size: 1.5rem; /* Slightly increased font size for article titles */
+    color: black;
     margin-bottom: 10px;
 }
 
 .news-article p {
-    color: white;
-    line-height: 1.5;
+    color: black;
+    line-height: 1.6; /* Improved line height for better readability */
     flex-grow: 1;
 }
 
@@ -106,58 +108,11 @@ nav ul li a:hover {
 }
 
 .news-article a:hover {
-    color: white;
+    color: black;
 }
 
 /* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        display: none;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background-color: #333;
-        border-top: 1px solid #0c0c0b;
-        z-index: 1000;
-    }
-    
-    nav ul.show {
-        display: flex;
-    }
-    
-    nav ul li {
-        width: 100%;
-        text-align: center;
-        margin: 10px 0;
-    }
-    
-    header h1 {
-        flex-grow: 1;
-        text-align: center;
-    }
-    
-    nav {
-        order: -1;
-    }
-    
-    .menu-toggle {
-        display: block;
-        background: none;
-        border: none;
-        color: #FFD700;
-        font-size: 24px;
-        cursor: pointer;
-    }
-}
-
 @media (max-width: 480px) {
-    .section {
-        padding: 30px 0;
-    }
-
     .section h2 {
         font-size: 1.5rem;
     }
