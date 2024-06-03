@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Player, News, Fixture
-from .models import Product, Order, OrderItem, Category
+from .models import Product,  OrderItem, Category
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
@@ -49,13 +49,5 @@ class ProductSerializer(serializers.ModelSerializer):
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
-        fields = ['id', 'order', 'product', 'quantity', 'price']
-        read_only_fields = ['price']
-
-class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer(many=True, read_only=True)
-    user = serializers.ReadOnlyField(source='user.username')
-
-    class Meta:
-        model = Order
-        fields = '__all__'
+        fields = ['id', 'user', 'product', 'quantity', 'price', 'created_at', 'updated_at', 'status']
+        read_only_fields = ['price', 'created_at', 'updated_at']
