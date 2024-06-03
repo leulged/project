@@ -1,6 +1,6 @@
 from django.urls import path, include
 from .views import PlayerListCreate, PlayerDetail, NewsListCreate, NewsDetail, FixtureList, RegisterView, CustomTokenObtainPairView
-from .views import CategoryListCreate,ProductListCreate, ProductDetail,OrderItemCreate, OrderDestory
+from .views import CategoryListCreate,ProductListCreate, ProductDetail, OrderListCreate, OrderDetail, OrderItemCreate, OrderDestory, Order
 
 
 urlpatterns = [
@@ -15,6 +15,8 @@ urlpatterns = [
     path('categories/', CategoryListCreate.as_view(), name='category-list-create'),
     path('products/', ProductListCreate.as_view(), name='product-list-create'),
     path('products/<int:pk>/', ProductDetail.as_view(), name='product-detail'),
+    path('orders/', OrderListCreate.as_view(), name='order-list-create'),
+    path('orders/<int:pk>/', OrderDetail.as_view(), name='order-detail'),
     path('order-items/', OrderItemCreate.as_view(), name='order-item-create'),
     path('order-items/<int:pk>/', OrderDestory.as_view(), name='order-item-destroy'),
 ]

@@ -23,8 +23,9 @@
                 const fixtureVenue = $('<p>').text(`Venue: ${fixture.venue}`);
                 const fixtureCompetition = $('<p>').text(`Competition: ${fixture.competition}`);
                 const fixtureDateTime = $('<p>').text(`Date: ${new Date(fixture.date_time).toLocaleString()}`);
+                const bookticket = $('<button>').text('Buy Ticket').css('background-color', 'red')
 
-                fixtureCard.append(homeTeamImage, awayTeamImage, fixtureTitle, fixtureVenue, fixtureCompetition, fixtureDateTime);
+                fixtureCard.append(homeTeamImage, awayTeamImage, fixtureTitle, fixtureVenue, fixtureCompetition, fixtureDateTime,bookticket);
                 fixtureContainer.append(fixtureCard);
             });
         },

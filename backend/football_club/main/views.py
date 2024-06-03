@@ -1,15 +1,15 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
 from .models import Player, News, Fixture
-from .models import Product, OrderItem, Category
+from .models import Product, Order, OrderItem, Category
 from .serializers import ProductSerializer, OrderItemSerializer
-from .serializers import PlayerSerializer, NewsSerializer, FixtureSerializer, CustomTokenObtainPairSerializer, UserSerializer
+from .serializers import PlayerSerializer, NewsSerializer, FixtureSerializer, UserSerializer, CustomTokenObtainPairSerializer
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import AllowAny
-from .serializers import ProductSerializer, OrderItemSerializer, CategorySerialzer
+from .serializers import ProductSerializer, OrderSerializer, OrderItemSerializer, CategorySerialzer
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
@@ -60,7 +60,16 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProductSerializer
 
 # Order Views
+class OrderListCreate(generics.ListCreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
 
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
 
 class OrderItemCreate(generics.ListCreateAPIView):
     queryset = OrderItem.objects.all()
@@ -69,7 +78,7 @@ class OrderItemCreate(generics.ListCreateAPIView):
     @transaction.atomic
     def create(self, request, *args, **kwargs):
         try:
-            user = request.user  # Get the currently authenticated user
+            order = Order.objects.get(id=request.data['order'])
             product = Product.objects.get(id=request.data['product'])
             quantity = int(request.data['quantity'])
 
@@ -84,17 +93,12 @@ class OrderItemCreate(generics.ListCreateAPIView):
             product.stock -= quantity
             product.save()
 
-            order_item = OrderItem.objects.create(
-                user=user,  # Set the user field
-                product=product,
-                quantity=quantity,
-                price=price
-            )
+            order_item = OrderItem.objects.create(order=order, product=product, quantity=quantity, price=price)
             serializer = self.get_serializer(order_item)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-        except Product.DoesNotExist:
-            return Response({'error': 'Product does not exist'}, status=status.HTTP_404_NOT_FOUND)
+        except (Order.DoesNotExist, Product.DoesNotExist):
+            return Response({'error': 'Order or Product does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
         except KeyError:
             return Response({'error': 'Missing required fields'}, status=status.HTTP_400_BAD_REQUEST)
@@ -102,10 +106,14 @@ class OrderItemCreate(generics.ListCreateAPIView):
         except ValueError:
             return Response({'error': 'Invalid value for quantity'}, status=status.HTTP_400_BAD_REQUEST)
         
-            
 class OrderDestory(generics.DestroyAPIView):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
     
+class UserOrderList(generics.ListAPIView):
+    serializer_class = OrderSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
     

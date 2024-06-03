@@ -39,15 +39,14 @@ header-component {
     }
 
 }
-/* Adjust the margin-top for the landing section to accommodate the header/navigation */
+
 .landing {
     background-color: black;
     height: 500px;
     margin-top: 90px;
     margin-bottom: 20px;
     animation: changeBackground 60s infinite;
-    background-size: cover; /* Adjust background size as needed */
-     /* Same as the height of the header/navigation */
+    background-size: cover;
      margin-left: 0px;
      margin-right: 0px;
      color: rgb(8, 8, 8);
@@ -69,11 +68,14 @@ header-component {
 }
 
 .news-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+   display: flex;
+   flex-direction: column;
+   height: 200px;
 }
-
+.news-image{
+    height: 300px;
+    width: 300px;
+}
 .news-article {
     background-color: #fff;
     padding: 20px;
