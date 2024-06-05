@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Player, News, Fixture
-from .models import Product, Order, OrderItem, Category
+from .models import Product, Order, OrderItem, Category, BookedFixture
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
@@ -13,6 +13,11 @@ class UserSerializer(serializers.ModelSerializer):
         def create(sefl, validated_data):
             user = User.objects.create_user(**validated_data)
             return user
+class UserDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'    
+
         
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -60,3 +65,10 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = '__all__'
         
+class BookedFixtureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BookedFixture
+        fields = ['id', 'user', 'fixture']
+        extra_kwargs = {
+            'user': {'required': True}
+        }

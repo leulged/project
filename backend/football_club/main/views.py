@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions
 from .models import Player, News, Fixture
-from .models import Product, Order, OrderItem, Category
+from .models import Product, Order, OrderItem, Category , BookedFixture
 from .serializers import ProductSerializer, OrderItemSerializer
 from .serializers import PlayerSerializer, NewsSerializer, FixtureSerializer, UserSerializer, CustomTokenObtainPairSerializer
 from django.contrib.auth.models import User
@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import AllowAny
-from .serializers import ProductSerializer, OrderSerializer, OrderItemSerializer, CategorySerialzer
+from .serializers import ProductSerializer, OrderSerializer, OrderItemSerializer, CategorySerialzer, BookedFixtureSerializer, UserDataSerializer
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
@@ -46,6 +46,10 @@ class NewsDetail(generics.RetrieveAPIView):
 class FixtureList(generics.ListCreateAPIView):
     queryset = Fixture.objects.all()
     serializer_class = FixtureSerializer
+class FixtureDetail(generics.RetrieveAPIView):
+    queryset = Fixture.objects.all()
+    serializer_class = FixtureSerializer
+    lookup_field = "id"
 
 class CategoryListCreate(generics.ListAPIView):
     queryset = Category.objects.all()
@@ -117,3 +121,16 @@ class UserOrderList(generics.ListAPIView):
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
     
+class BookedFixtureListCreate(generics.ListCreateAPIView):
+    queryset = BookedFixture.objects.all()
+    serializer_class = BookedFixtureSerializer
+
+    def perform_create(self, serializer):
+        username = self.request.data.get('user')
+        if not username:
+            raise ValueError("User is required")
+        serializer.save(user=username)
+        
+class  UserData(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserDataSerializer

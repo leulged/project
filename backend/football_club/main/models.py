@@ -43,6 +43,7 @@ class Fixture(models.Model):
         return f'{self.home_team} vs {self.away_team}'
 
 class BookedFixture(models.Model):
+    user = models.CharField(max_length=50)
     fixture = models.ForeignKey(Fixture, on_delete=models.CASCADE)
 
     def __str__(self):
