@@ -37,7 +37,6 @@ class Fixture(models.Model):
     venue = models.CharField(max_length=50)
     competition = models.CharField(max_length=255)
     date_time = models.DateTimeField()
-    booked = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.home_team} vs {self.away_team}'
